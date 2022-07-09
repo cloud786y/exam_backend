@@ -1,0 +1,572 @@
+Basic Networking Concepts	
+=========================
+
+A host is any information device which communicates with other devices in the network
+
+Similarly, network is a collection of hosts which can communicate with each other.
+
+Internet Protocol
+
+IPv4 Address
+------------------
+- It is a 32 bit address
+- Each 8 bits are known as an octet/byte.
+- Each octet is divided by a '.' symbol
+
+00000000.11111111.0101010.11010101
+
+
+Computer always communicate in binary language (0 or 1)
+Decimal (0-9)		0123456789
+Hexadecimal (0-9,a-f)	0123456789abcdef
+
+1 bit = 0 or 1
+8 bits  = 1 byte/octet
+1024 bytes = 1 KB
+1024 KB = 1MB
+1024 MB = 1GB
+1024 GB = 1TB
+1024 TB = 1PB
+
+
+10101010.11110000.01010101.11111111 	---> Binary Language
+
+H0w to convert any binary number to a decimal number
+
+
+	1		0		1		0		1		0		1		0
+
+	2^7	2^6	2^5	2^4	2^3	2^2	2^1	2^0
+
+
+2^0 = 1
+2^1 = 2		2
+2^2 = 4		2x2
+2^3 = 8		2x2x2
+2^4 =16	2x2x2x2
+2^5 =32	2x2x2x2x2
+2^6=64	2x2x2x2x2x2
+2^7=128	2x2x2x2x2x2x2
+
+= (2^0 x 0) + (2^1 x 1) + (2^2 x 0) + (2^3x1) + (2^4x0) + (2^5x1) +(2^6x0) +(2^7x1)
+= 0			+ 2	+ 			0	+ 		8 	+ 		0	+		32	+ 0 	+ 		128
+=170	10101010
+
+	0		1		0		1		1		0		1		0
+
+	2^7	2^6	2^5	2^4	2^3	2^2	2^1	2^0
+
+= (2^0 x 0) + (2^1 x 1) + (2^2x0) + (2^3x1) + (2^4x1) + (2^5 x 0) + (2^6x1) + (2^7x0)
+=0		+	2			+ 0			+8		+	16		+0			+64	+0
+=90
+
+
+	1		1		1		1		1		1		1		1	
+
+	2^7	2^6	2^5	2^4	2^3	2^2	2^1	2^0
+
+= (2^0x1) + (2^1x1) + (2^2x1) + (2^3x1) + (2^4x1) + (2^5x1) + 2^6x1 + (2^7x1)
+
+= 1 + 2 + 4 + 8 + 16 + 32 + 64 + 128
+= 255
+
+
+00000000 ---> 0
+11111111 ---> 255
+
+First IP
+00000000.00000000.00000000.00000000 = 	0.0.0.0
+
+Last IP
+11111111.11111111.11111111.11111111 = 	255.255.255.255
+
+To understand the sequence of ip addresses
+
+1. Always start with the rightmost value
+2. Only after the rightmost has been completely filled, then go to the left value and reset rightmost values back to 0.
+
+
+0.0.0.0		0000
+0.0.0.1		0001
+0.0.0.2		0002
+0.0.0.3
+0.0.0.4
+0.0.0.5
+0.0.0.6
+
+0.0.0.254
+0.0.0.255	0009
+0.0.1.0		0010
+0.0.1.1		0011
+0.0.1.2		0012
+0.0.1.3		0013
+
+0.0.1.255		0019
+0.0.2.0		0020
+0.0.2.1
+0.0.2.2
+0.0.2.3
+0.0.2.255		0029
+0.0.3.0		0030
+0.0.3.1		0031
+0.0.3.2
+0.0.3.3
+
+0.0.3.255
+0.0.4.0
+0.0.4.1
+0.0.4.2
+0.0.4.3
+0.0.4.4
+
+
+0.04.9
+0.0.4.10
+0.0.4.11
+
+0.0.4.253
+0.0.4.254
+0.0.4.255		0049
+0.0.5.0			0050
+
+0.0.254.255	0089
+0.0.255.0		0090
+0.0.255.1		0091
+0.0.255.2		0092
+0.0.255.3		0093
+
+0.0.255.255	0099
+0.1.0.0			0100
+0.1.0.1			0101
+0.1.0.2
+0.1.0.3
+0.1.0.255		0109
+0.1.1.0			0110
+0.1.1.1
+0.1.1.2
+0.1.1.3
+0.1.1.4
+0.1.1.255		0119
+0.1.2.0		0120
+0.1.2.1
+0.1.2.2
+0.1.2.3
+0.1.2.255
+0.1.3.0
+
+
+0199
+0200
+
+0.1.255.255	0199
+0.2.0.0			0200
+
+0.2.255.255		0299
+0.3.0.0
+
+0.3.255.255
+0.4.0.0
+
+0.255.0.0				0.0.0.0 -0.255.255.255
+0.255.255.255		0999			0000 - 0999
+1.0.0.0			1000				1000 - 1999
+1.0.0.1			1001				2000 - 2999
+1.0.0.2								3000 - 3999
+1.0.0.3
+1.0.0.4
+1.0.0.255			1009
+1.0.1.0			1010
+1.0.1.1
+1.0.1.2
+
+
+
+1.0.1.255			1019
+1.0.2.0
+
+1.255.255.255		1999
+2.0.0.0			2000
+
+2.255.255.255		2999
+3.0.0.0
+3.255.255.255
+4.0.0.0
+
+
+255.0.0.0
+255.255.255.255		9999
+
+
+
+0.0.0.0		255.255.255.255
+
+255 x 255 x 255 x 255 == 4.3 Billion IP addresses in the IPv4 range.
+
+1. NAT - Network Address translation : Public IP and Private IP
+2. IPv6 addresses 128 bits
+
+
+Public - IP addresses provided by your ISP to get access to the internet ( Internet Service Provider)
+Private - IP addresses provided locally in a network by your DHCP server or your net admin for communication in the intranet
+
+Range of IP addresses in Each class:			Parity Bit
+
+Class A :		0.0.0.0 		-	127.255.255.255
+Class B :		128.0.0.0	-	191.255.255.255
+Class C :		192.0.0.0	-	223.255.255.255
+Class D :		224.0.0.0	- 	239.255.255.255
+Class E  : 		240.0.0.0	-	255.255.255.255
+
+Private IP address ranges:
+
+Class A :		10.0.0.0			-	10.255.255.255
+Class B :		172.16.0.0			-	172.31.255.255
+Class C :		192.168.0.0		-	192.168.255.255
+
+10.20.30.40			Class A	Priv					225.1.2.3			Class D	Public
+20.30.40.1			Class A 	Public				250.250.1.2			Class E 	Public
+192.168.1.100		Class C 	Priva				192.169.1.1			Class C	Public
+172.35.0.1			Class B	Public				172.18.1.2			Class B 	Private
+192.50.1.2			Class C	Public				10.250.250.1		Class A	Private
+49.204.238.12		Class A  	Public				192.168.0.100		Class C 	Private
+
+
+
+												Class A
+
+0.0.0.0	<-----------------------------------------------------Class A ---------------------------------------------------->	127.255.255.255
+											<-------- Private IP ----------->
+											10.0.0.0  -  10.255.255.255
+<--------------Public IP -------------------->										<------------------- Public IP ---------------------->	
+0.0.0.0					9.255.255.255												11.0.0.0 - 127.255.255.255
+
+*****IMPORTANT******
+Class A : 10.any.any.any to 10.any.any.any	-> Private
+Class B : 172.16.any.any to 172.31.any.any	 --> Private
+Class C : 192.168.any.any to 192.168.any.any 	--> Private
+
+Public - These are the IP addresses maintained and provided by your ISP to connect to your internet
+Browser - what is my ip
+
+Private - These are the IP addresses maintained or provided by the DHCP Server or by the network admin in the intranet (local network)
+
+Open the command prompt --> ipconfig
+
+
+Private IP ranges
+
+Class A : 10.0.0.0 -- 10.255.255.255
+Class B : 172.16.0.0 -- 172.31.255.255
+Class C : 192.168.0.0 -- 192.168.255.255
+
+192.168.0.0-192.168.0.255
+192.168.1.0-192.168.1.255
+192.168.2.0-192.168.2.255
+
+172.16.0.0  - 172.16.255.255 			(255 x 255 hosts) 			1 network
+172.17.0.0  -  172.17.255.255			( 	||			)			2nd network
+
+Any other IP other than these ranges of IP mentioned is a public IP
+
+
+Class A : N.H.H.H
+Class B : N.N.H.H
+Class C : N.N.N.H
+Class D : N.N.N.N
+Class E : N.N.N.N
+
+Network Portion  - As long as the network portion is same the hosts still belong to the same network.
+
+Class C: 	N.N.N.H _ Therefore in each Class C network we can connect a total of 255 hosts
+N.N.N.H
+192.168.0.0
+192.168.0.1
+192.168.0.2
+192.168.0.3
+192.168.0.4
+192.168.0.5
+
+
+192.168.0.255
+----------------------	Network divides over here
+192.168.1.0
+192.168.1.1
+192.168.1.2
+192.168.1.254
+192.168.1.255
+--------------------- Network divides over here
+192.168.2.0
+192.168.2.255
+------------------
+192.168.3.0
+192.168.3.255
+
+192.168.255.0
+192.168.255.255
+
+Class B : N.N.H.H Therefore in class B we can connect a total of 255 x 255 hosts = 65525 hosts
+N.N.H.H
+172.16.0.0
+172.16.0.1
+172.16.0.2
+172.16.0.255
+172.16.1.0
+172.16.1.1
+172.16.1.255
+172.16.2.0
+172.16.2.255
+172.16.3.0
+172.16.3.255
+
+	
+172.16.255.255					1721699
+------------------------------ Network divides over here		1721700
+172.17.0.0
+172.17.255.255
+------------------------------
+172.18.0.0
+172.18.255.255
+-------------------------------
+172.19.0.0
+172.19.255.255
+-----------------------------
+
+Class A : N.H.H.H	Therefore we can connect 255x255x255 hosts in each single CLass A network
+N.H.H.H
+10.0.0.0
+10.0.0.1
+10.0.0.2
+10.0.0.255
+10.0.1.0
+10.0.1.255
+10.0.2.0
+10.0.255.255
+
+
+10.255.255.255		10999
+----------------------------------- Network divides over here
+11.0.0.0			11000
+
+
+Class C networks can be used for smaller networks such as home purposes or smaller offices
+CLass B and Class A can be used for Multinational companies 
+Class D&E : R&D, Military, Government portals, Broadcasting
+
+
+
+Windows ipconfig		cmd
+Linux 	ifconfig		terminal
+
+browser --> what is my ip
+
+Subnet Mask 
+--------------------
+N =1
+H=0
+
+Class A :	N.H.H.H	11111111.00000000.00000000.00000000	255.0.0.0			/8
+Class B :    	N.N.H.H	11111111.11111111.00000000.00000000	255.255.0.0		/16
+Class C : 	N.N.N.H	11111111.11111111.11111111.00000000	255.255.255.0		/24
+
+How do we change the Private address:
+1. Automatic (DHCP)
+2. Manually (You or your network admin can assign this address)
+
+Network setting --> ncpa.cpl(run)
+Control Panel --> network and Internet --> Network and Sharing center --> Change Adapter Settings
+
+DHCP Server (Dynamic Host configuration Protocol) - It automatically assigns an Ip address to each and every host connected in the network.
+DORA Process
+
+DNS Server - Domain name service
+To resolve a IP address to a hostname and vice versa.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dad - 9100378569
+Mom - 7894561230
+Sister - 9876543210
+Shoaib - 8574961230
+
+Special IP addresses:
+1. APIPA - Automatic Private IP Assignment - 169.254.0.0 - 169.254.255.255
+Automatic IP assigned to your Machine by the OS when both manual and automatic methods dont assign an IP
+2. Loopback - 127.0.0.0 - 127.255.255.255 (To check if the NIC card is functioning properly)
+
+www.google.com --> 142.250.193.100
+www.bing.com --> 3.4.5.6
+www.youtube.com -->		
+
+CIDR Value : Classless Interdomain Routing	(Linux)
+Class A : 255.0.0.0					CIDR /8
+Class B : 255.255.0.0 				CIDR /16
+Class C : 255.255.255.0			CIDR /24
+
+192.168.1.25/24
+
+
+CAM - Content addressable memory 
+
+MAC address - Permament address
+
+192.168.1.1 	0a:1b:2c:3d:4e:5f
+
+IPv6 :
+--------
+
+1. It is a 128 bit address
+2. It is a hexadecimal address
+3. It has 8 portions and each of it is 16 bits long.
+4. Each portion is seperated by a colon(:).
+
+Ex: 
+2001:123a:abcd:12fe:0000:0000:0012:1200
+0010000000000001
+
+				0		0		1		1
+		
+				2^3	2^2	2^1	2^0
+
+0 - 0000
+1 - 0001
+2 - 0010
+3 - 0011
+4 - 0100
+5 - 0101
+6 - 0110
+7 - 0111
+8 - 1000
+9 -1001
+10-1010		a
+11-1011		b
+12-1100		c
+13-1101		d
+14-1110		e
+15-1111		f
+
+0000:0000:0000:0000:0000:0000:0000:0000		First Ip in the IPv6 range
+FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF			Last IP in the IPv6 range
+
+/64
+
+FFFF:FFFF:FFFF:FFFF:0000:0000:0000:0001
+
+Rules to shorten an address:
+1. Preceding 0's can be omitted
+2. If there's any portion filled with 0's we can replace it with ::
+3. You can use :: only once in the whole address
+
+2001:0012:a001:0000:0000:2500:0001:0000
+
+2001:12:a001:0:0:2500:1:0
+
+2001:12:a001::2500:1:0
+
+2001:12:a001:0:0:2500:1::
+
+2001:12:a001::2500:1::
+
+2001:0000:0000:0000:0000:0000:0000:0011
+
+2001::11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Class C
+192.168.0.0 - 192.168.0.255				(255 devices)			255.255.255.0
+
+CLass B
+172.16.0.0 - 172.16.255.255				(255 x 255 devices)	255.255.0.0
+
+172.16.0.0 - 172.16.0.255											255.255.255.0
+172.16.1.0 - 172.16.1.255
+172.16.2.0 - 172.16.2.255
+172.16.3.0 - 172.16.3.255
+
+172.16.255.0 - 172.16.255.255
+
+
+172.
+
+192.168.0.0 - 192.168.0.255								
+
+N.N.N.H
+
+11111111.11111111.11111111.00000000			255.255.255.0
+
+11111111.11111111.11111111.10000000			255.255.255.128
+
+192.168.0.0 - 192.168.0.127
+192.168.0.128 - 192.168.0.255
+
+1.1.1.11111100														255.255.255.252
+No. of subnets = 2^n	64 subnets
+No. of hosts in each subnet = 2^h - 2
+
+192.168.0.0 - 192.168.0.3
+192.168.0.4 - 192.168.0.7
+192.168.0.8 - 192.168.0.11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
